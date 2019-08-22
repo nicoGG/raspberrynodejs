@@ -1,0 +1,4 @@
+{
+    "connectionString": "mongodb+srv://admin:admin@cluster0-63xto.mongodb.net/mongoapp?retryWrites=true&w=majority",
+    "secret": "palabrasecretaxd"
+}
