@@ -1,0 +1,33 @@
+{
+  "name": "raspberrytemperatura",
+  "version": "1.0.0",
+  "description": "Guarda en mongo las temperaturas y las emite en un socket",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nicoGG/raspberrynodejs.git"
+  },
+  "author": "Nicolas Galdames",
+  "license": "ISC",
+  "engines": {
+    "node": "10.16.0"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "mongodb": "^3.3.0-beta2",
+    "mongoose": "^5.6.7",
+    "node-dht-sensor": "^0.3.0",
+    "onoff": "^4.1.3",
+    "socket.io": "^2.2.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.19.1"
+  },
+  "bugs": {
+    "url": "https://github.com/nicoGG/raspberrynodejs/issues"
+  },
+  "homepage": "https://github.com/nicoGG/raspberrynodejs#readme"
+}
