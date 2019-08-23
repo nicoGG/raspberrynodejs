@@ -8,7 +8,7 @@ module.exports = {
 
 async function guardarTemperatura(temp) {
     console.log('RECIBE ' + temp);
-    //const tempe = new Temp(temp);
+    const tempe = new Temp(temp);
 
-    // await tempe.save();
+    await tempe.save();
 }

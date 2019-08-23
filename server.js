@@ -6,7 +6,7 @@ var io = require('socket.io')(server);
 var sensor = require('node-dht-sensor');
 var tempServicio = require('./temperatura/temp.servicio');
 const config = require('config.json');
-var puerto = 5000;
+var puerto = 4000;
 
 server.listen(puerto, function () {
     console.log('Servidor corriendo en puerto ' + puerto);
@@ -14,6 +14,13 @@ server.listen(puerto, function () {
 
 var pinSensor = 16;
 var contenido = null;
+
+io.on('connection', function (socket) {
+    console.log('Un cliente se ha conectado');
+    socket.on('temperatura', function (data) {
+        io.sockets.emit('temperatura', { hola });
+    });
+});
 
 function obtenerTemperatura() {
     sensor.read(11, pinSensor, function (err, temp, hum) {
@@ -25,7 +32,7 @@ function obtenerTemperatura() {
                     hora: new Date().toISOString()
                 }
             );
-           // console.log('TEMP: ' + contenido);
+            // console.log('TEMP: ' + contenido);
             tempServicio.guardarTemperatura(contenido);
         }
     });
