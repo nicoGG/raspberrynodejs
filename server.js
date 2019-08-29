@@ -17,9 +17,6 @@ var contenido = null;
 
 io.on('connection', function (socket) {
     console.log('Un cliente se ha conectado');
-    socket.on('temperatura', function (data) {
-        io.sockets.emit('temperatura', { hola });
-    });
 });
 
 function obtenerTemperatura() {
@@ -32,8 +29,7 @@ function obtenerTemperatura() {
                     hora: new Date().toISOString()
                 }
             );
-            // console.log('TEMP: ' + contenido);
-            tempServicio.guardarTemperatura(contenido);
+            io.sockets.emit('temperatura',contenido);
         }
     });
 }
