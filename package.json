@@ -25,7 +25,7 @@
     "socket.io": "^2.2.0"
   },
   "devDependencies": {
-    "nodemon": "^1.19.1"
+    "nodemon": "^2.0.3"
   },
   "bugs": {
     "url": "https://github.com/nicoGG/raspberrynodejs/issues"
