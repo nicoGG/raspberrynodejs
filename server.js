@@ -4,34 +4,36 @@ var app = express();
 var server = require('http').Server(app);
 var io = require('socket.io')(server);
 var sensor = require('node-dht-sensor');
-var tempServicio = require('./temperatura/temp.servicio');
 const config = require('config.json');
-var puerto = 4000;
+var port = 4000;
 
-server.listen(puerto, function () {
-    console.log('Servidor corriendo en puerto ' + puerto);
+server.listen(port, function () {
+    console.log('Servidor corriendo en puerto ' + port);
 });
 
 var pinSensor = 16;
-var contenido = null;
+var body = null;
 
 io.on('connection', function (socket) {
     console.log('Un cliente se ha conectado');
 });
 
-function obtenerTemperatura() {
+function getTemp() {
     sensor.read(11, pinSensor, function (err, temp, hum) {
+    	console.log('TEMP',temp);
+    	console.log('HUMIDIFY',hum);
+
         if (!err) {
-            contenido = JSON.stringify(
+            body = JSON.stringify(
                 {
-                    temperatura: temp.toFixed(1),
-                    humedad: hum.toFixed(1),
-                    hora: new Date().toISOString()
+                    temperature: temp.toFixed(1),
+                    humidify: hum.toFixed(1),
+                    date: new Date().toISOString()
                 }
             );
-            io.sockets.emit('temperatura',contenido);
+            io.sockets.emit('temp',body);
         }
     });
 }
 
-setInterval(obtenerTemperatura, 2000);
+setInterval(getTemp, 2000);
